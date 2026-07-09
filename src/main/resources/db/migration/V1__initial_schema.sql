@@ -1,4 +1,4 @@
-create table employees (
+reate table employees (
     id bigserial primary key,
     first_name character varying(255) not null,
     last_name character varying(255) not null,

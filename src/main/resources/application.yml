@@ -1,18 +1,24 @@
 spring:
   application:
     name: sistema-hr
+
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+
   jpa:
     hibernate:
       ddl-auto: validate
     properties:
       hibernate:
         format_sql: true
+
   flyway:
     enabled: true
+    baseline-on-migrate: true
+    baseline-version: 1
+
   servlet:
     multipart:
       max-file-size: 8MB
