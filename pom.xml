@@ -8,7 +8,7 @@
 		<version>3.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.sistemahr</groupId>
+	<groupId>com.sistemahr</groupId>git
 	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SistemaHR</name>
@@ -111,6 +111,8 @@
 
 	<build>
 		<plugins>
+
+			<!-- Spring Boot -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -123,6 +125,8 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<!-- Compilador Java -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -142,6 +146,7 @@
 							</annotationProcessorPaths>
 						</configuration>
 					</execution>
+
 					<execution>
 						<id>default-testCompile</id>
 						<phase>test-compile</phase>
@@ -159,68 +164,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>3.5.0</version>
-				<executions>
-					<execution>
-						<id>frontend-npm-ci</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<skip>${frontend.skip}</skip>
-							<workingDirectory>${project.basedir}/../frontend</workingDirectory>
-							<executable>npm</executable>
-							<arguments>
-								<argument>ci</argument>
-							</arguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>frontend-build</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<skip>${frontend.skip}</skip>
-							<workingDirectory>${project.basedir}/../frontend</workingDirectory>
-							<executable>npm</executable>
-							<environmentVariables>
-								<VITE_API_URL>/api</VITE_API_URL>
-							</environmentVariables>
-							<arguments>
-								<argument>run</argument>
-								<argument>build</argument>
-							</arguments>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-frontend-dist</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/static</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${project.basedir}/../frontend/dist</directory>
-									<filtering>false</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+
 		</plugins>
 	</build>
 
